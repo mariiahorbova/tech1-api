@@ -1,0 +1,195 @@
+{
+	"info": {
+		"_postman_id": "8f631ad8-3165-425f-b86e-94fcf1b68e6a",
+		"name": "Tech1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "16986917"
+	},
+	"item": [
+		{
+			"name": "Get users, whose age > number",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT_ACCESS}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/users/0",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"users",
+						"0"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get users with articles, whose color is enum value",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT_ACCESS}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/users/articles/red",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"users",
+						"articles",
+						"red"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get users with 3 or more articles",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT_ACCESS}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/users-qt-3-articles",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"users-qt-3-articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save User",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT_ACCESS}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Test User\",\r\n    \"age\": 24\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/users",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Article",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{JWT_ACCESS}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"text\": \"Test Article\",\r\n    \"color\": \"red\",\r\n    \"author_id\": 7\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{BASE_URL}}/articles",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"articles"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.environment.set(\"JWT_ACCESS\", pm.response.json().access);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{BASE_URL}}/users/signin",
+					"host": [
+						"{{BASE_URL}}"
+					],
+					"path": [
+						"users",
+						"signin"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
